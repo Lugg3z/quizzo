@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "866705337726",
+    "project_id": "quizzolino",
+    "storage_bucket": "quizzolino.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866705337726:android:6d958ddd8753e45444972f",
+        "android_client_info": {
+          "package_name": "com.example.quizzo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXGRqz7VBaHJHylcjjqR2Jq2nuo8ibuNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
