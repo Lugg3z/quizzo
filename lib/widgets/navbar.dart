@@ -72,6 +72,20 @@ class _NavBarState extends State<NavBar> {
                 ),
                 const ListTile(
                   leading: Icon(
+                    Icons.my_library_books,
+                    color: AppColor.mainColor,
+                  ),
+                  title: Text(
+                    'My Quizzes',
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      color: AppColor.thirdColor,
+                    ),
+                  ),
+                  onTap: null, // To Favorite Page
+                ),
+                const ListTile(
+                  leading: Icon(
                     Icons.favorite,
                     color: AppColor.mainColor,
                   ),

@@ -2,13 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizzo/UserData.dart';
-import 'package:quizzo/firebase_options.dart';
-import 'package:quizzo/login.dart';
-import 'package:quizzo/navbar.dart';
-import 'package:quizzo/register.dart';
-import 'appbar.dart';
-import 'provider/userLoggedInProvider.dart';
+import 'package:quizzo/firebase_stuff/UserData.dart';
+import 'package:quizzo/firebase_stuff/firebase_options.dart';
+import 'package:quizzo/pages/login.dart';
+import 'package:quizzo/widgets/navbar.dart';
+import 'package:quizzo/pages/register.dart';
+import '../widgets/appbar.dart';
+import '../provider/userLoggedInProvider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
