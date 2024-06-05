@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'constants/colors.dart';
+import '../constants/colors.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 

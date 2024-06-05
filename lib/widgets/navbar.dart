@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizzo/constants/colors.dart';
-import 'package:quizzo/create_quiz.dart';
+import 'package:quizzo/pages/create_quiz.dart';
+import 'package:quizzo/pages/my_quizzes.dart';
 import 'package:quizzo/provider/userLoggedInProvider.dart';
-import 'login.dart';
+import '../pages/login.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -70,19 +71,20 @@ class _NavBarState extends State<NavBar> {
                   onTap: () => Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const CreateQuiz())),
                 ),
-                const ListTile(
-                  leading: Icon(
+                ListTile(
+                  leading: const Icon(
                     Icons.my_library_books,
                     color: AppColor.mainColor,
                   ),
-                  title: Text(
+                  title: const Text(
                     'My Quizzes',
                     style: TextStyle(
                       fontFamily: 'Rubik',
                       color: AppColor.thirdColor,
                     ),
                   ),
-                  onTap: null, // To Favorite Page
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const MyQuizzes())), // To Favorite Page
                 ),
                 const ListTile(
                   leading: Icon(

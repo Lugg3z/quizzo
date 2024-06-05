@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quizzo/constants/colors.dart';
-import 'package:quizzo/inputfield.dart';
+import 'package:quizzo/widgets/inputfield.dart';
 
 class createCard extends StatelessWidget {
   createCard({super.key});

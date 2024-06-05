@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:quizzo/UserData.dart';
-import 'package:quizzo/appbar.dart';
+import 'package:quizzo/firebase_stuff/UserData.dart';
+import 'package:quizzo/widgets/appbar.dart';
 import 'package:quizzo/constants/colors.dart';
-import 'package:quizzo/create_card.dart';
-import 'package:quizzo/inputfield.dart';
-import 'package:quizzo/main.dart';
-import 'package:quizzo/navbar.dart';
+import 'package:quizzo/widgets/create_card.dart';
+import 'package:quizzo/widgets/inputfield.dart';
+import 'package:quizzo/pages/main.dart';
+import 'package:quizzo/widgets/navbar.dart';
 
 class CreateQuiz extends StatefulWidget {
   const CreateQuiz({super.key});
@@ -105,12 +105,7 @@ class _CreateQuizState extends State<CreateQuiz> {
       definitions.add(cards[i].getDefinition());
     }
 
-    print(terms);
-    print(definitions);
-    print(_nameOfQuiz.text);
-    print(UserData.currentLoggedInUser!.username);
-
-    await FirebaseFirestore.instance.collection('quizzes').doc(UserData.currentLoggedInUser!.username+_nameOfQuiz.text).set({"terms":terms, "definitions": definitions});
+    await FirebaseFirestore.instance.collection('quizzes').doc(UserData.currentLoggedInUser!.username+_nameOfQuiz.text).set({"terms":terms, "definitions": definitions, "author": UserData.currentLoggedInUser!.username, "uid": UserData.currentLoggedInUser!.uid});
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const MyHomePage(title: "Quizzo",)),
