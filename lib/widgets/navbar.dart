@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quizzo/constants/colors.dart';
 import 'package:quizzo/pages/create_quiz.dart';
 import 'package:quizzo/pages/my_quizzes.dart';
+import 'package:quizzo/pages/searchbar.dart';
 import 'package:quizzo/provider/userLoggedInProvider.dart';
 import '../pages/login.dart';
 
@@ -86,19 +87,20 @@ class _NavBarState extends State<NavBar> {
                   onTap: () => Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const MyQuizzes())), // To Favorite Page
                 ),
-                const ListTile(
-                  leading: Icon(
-                    Icons.favorite,
+                ListTile(
+                  leading: const Icon(
+                    Icons.search,
                     color: AppColor.mainColor,
                   ),
-                  title: Text(
-                    'Favorites',
+                  title: const Text(
+                    'Search',
                     style: TextStyle(
                       fontFamily: 'Rubik',
                       color: AppColor.thirdColor,
                     ),
                   ),
-                  onTap: null, // To Favorite Page
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const SearchPage())),
                 ),
                 const Divider(),
                 ListTile(

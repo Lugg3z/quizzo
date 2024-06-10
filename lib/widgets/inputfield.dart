@@ -6,6 +6,7 @@ class TextInput extends StatelessWidget {
   final String hintText;
   final TextInputType inputType;
   final Color fillColor;
+  final Function(String)? onChanged;
   const TextInput(
       {super.key,
       this.isPassword = false,
@@ -13,6 +14,7 @@ class TextInput extends StatelessWidget {
       required this.hintText,
       required this.inputType,
       required this.fillColor, 
+      this.onChanged,
       });
 
   @override
@@ -29,6 +31,7 @@ class TextInput extends StatelessWidget {
         enabledBorder: border,
         filled: true,
         contentPadding: const EdgeInsets.all(8)),
+        onChanged: onChanged,
       keyboardType: inputType,
       obscureText: isPassword,
     );

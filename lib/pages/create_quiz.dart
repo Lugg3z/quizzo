@@ -105,7 +105,9 @@ class _CreateQuizState extends State<CreateQuiz> {
       definitions.add(cards[i].getDefinition());
     }
 
-    await FirebaseFirestore.instance.collection('quizzes').doc(UserData.currentLoggedInUser!.username+_nameOfQuiz.text).set({"terms":terms, "definitions": definitions, "author": UserData.currentLoggedInUser!.username, "uid": UserData.currentLoggedInUser!.uid});
+    String nameInDataBase = UserData.currentLoggedInUser!.uid+_nameOfQuiz.text;
+
+    await FirebaseFirestore.instance.collection('quizzes').doc(nameInDataBase).set({"terms":terms, "definitions": definitions, "name": _nameOfQuiz.text, "author": UserData.currentLoggedInUser!.username, "uid": UserData.currentLoggedInUser!.uid});
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const MyHomePage(title: "Quizzo",)),
