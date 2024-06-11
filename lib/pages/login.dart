@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizzo/provider/userLoggedInProvider.dart';
-import 'main.dart';
+import '../main.dart';
 import 'register.dart';
 import '../constants/colors.dart';
 import '../widgets/inputfield.dart';

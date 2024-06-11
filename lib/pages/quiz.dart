@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:quizzo/constants/colors.dart';
 import 'package:quizzo/firebase_stuff/get_quizzes.dart';
 import 'package:quizzo/widgets/appbar.dart';
@@ -65,14 +63,7 @@ class _QuizState extends State<Quiz> {
                         height: 45,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black,
-                                spreadRadius: 1,
-                                blurRadius: 1,
-                                blurStyle: BlurStyle.outer,
-                              )
-                            ]),
+                            boxShadow: AppColor.standardShadow),
                         child: Material(
                           borderRadius: BorderRadius.circular(4),
                           color: AppColor.mainColor,
@@ -97,14 +88,7 @@ class _QuizState extends State<Quiz> {
                         height: 45,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black,
-                                spreadRadius: 1,
-                                blurRadius: 1,
-                                blurStyle: BlurStyle.outer,
-                              )
-                            ]),
+                            boxShadow: AppColor.standardShadow),
                         child: Material(
                           borderRadius: BorderRadius.circular(4),
                           color: AppColor.mainColor,

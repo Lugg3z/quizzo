@@ -1,6 +1,4 @@
-import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quizzo/constants/colors.dart';
 import 'package:quizzo/firebase_stuff/UserData.dart';
@@ -48,19 +46,13 @@ class _QuizzoCardState extends State<QuizzoCard> {
           decoration: BoxDecoration(
               color: AppColor.mainColor,
               borderRadius: BorderRadius.circular(4.0),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black,
-                  spreadRadius: 1,
-                  blurRadius: 1,
-                  blurStyle: BlurStyle.outer,
-                )
-              ]),
+              boxShadow: AppColor.standardShadow),
           child: Center(
             child: SingleChildScrollView(
               child: Text(
                 widget.display,
-                style: const TextStyle(color: AppColor.thirdColor, fontSize: 20),
+                style:
+                    const TextStyle(color: AppColor.thirdColor, fontSize: 20),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -136,14 +128,7 @@ class _QuizNamesState extends State<QuizNames> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
                 color: AppColor.mainColor,
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black,
-                    spreadRadius: 1,
-                    blurRadius: 1,
-                    blurStyle: BlurStyle.outer,
-                  )
-                ]),
+                boxShadow: AppColor.standardShadow),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -152,7 +137,7 @@ class _QuizNamesState extends State<QuizNames> {
                   widget.name,
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.w500),
-                  overflow:  TextOverflow.ellipsis,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   "Made by: ${widget.author}",
@@ -175,13 +160,6 @@ class _QuizNamesState extends State<QuizNames> {
             decoration: BoxDecoration(
                 color: AppColor.mainColor,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.5),
-                    spreadRadius: 1,
-                    blurRadius: 5,
-                    offset: const Offset(0, 5),
-                  ),
-                ],
+                boxShadow: AppColor.standardShadow,
               ),
               */

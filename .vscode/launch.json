@@ -8,7 +8,7 @@
             "name": "quizzo",
             "request": "launch",
             "type": "dart",
-            "program": "lib/pages/main.dart"
+            "program": "lib/main.dart"
         },
         {
             "name": "quizzo (profile mode)",
@@ -22,11 +22,5 @@
             "type": "dart",
             "flutterMode": "release"
         },
-        {
-            "name": "Flutter (lib\\pages\\main.dart)",
-            "type": "dart",
-            "request": "launch",
-            "program": "lib\\pages\\main.dart"
-        }
     ]
 }

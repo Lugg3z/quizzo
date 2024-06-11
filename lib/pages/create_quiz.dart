@@ -7,7 +7,7 @@ import 'package:quizzo/widgets/appbar.dart';
 import 'package:quizzo/constants/colors.dart';
 import 'package:quizzo/widgets/create_card.dart';
 import 'package:quizzo/widgets/inputfield.dart';
-import 'package:quizzo/pages/main.dart';
+import '../main.dart';
 import 'package:quizzo/widgets/navbar.dart';
 
 class CreateQuiz extends StatefulWidget {
@@ -53,7 +53,7 @@ class _CreateQuizState extends State<CreateQuiz> {
                 },
               ),
 
-              ConstrainedBox(
+              Container(
                 constraints: const BoxConstraints(
                   maxWidth: 50.0,
                 ),
@@ -75,7 +75,7 @@ class _CreateQuizState extends State<CreateQuiz> {
                 ),
               ),
               const SizedBox(height: 30),
-              ConstrainedBox(
+              Container(
                 constraints: const BoxConstraints(
                   maxWidth: 100.0,
                 ),

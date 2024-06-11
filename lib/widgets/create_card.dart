@@ -29,6 +29,7 @@ class createCard extends StatelessWidget {
           constraints: const BoxConstraints(
             maxWidth: 430.0,
           ),
+          decoration: BoxDecoration(boxShadow: AppColor.standardShadow),
           width: MediaQuery.of(context).size.width - 50,
           child: TextInput(
             fillColor: AppColor.mainColor,
