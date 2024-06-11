@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:quizzo/firebase_stuff/UserData.dart';
 import 'package:quizzo/firebase_stuff/firebase_options.dart';
 import 'package:quizzo/pages/login.dart';
+import 'package:quizzo/pages/searchbar.dart';
 import 'package:quizzo/widgets/navbar.dart';
 import 'package:quizzo/pages/register.dart';
 import '../widgets/appbar.dart';
@@ -20,8 +21,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     UserCredentialChanged c = UserCredentialChanged();
@@ -81,14 +81,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const NavBar(),
-      appBar: CustomAppBar(),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-        ),
-      ),
-    );
+    return const SearchPage();
   }
 }

@@ -44,48 +44,15 @@ class _NavBarState extends State<NavBar> {
                   ),
                   currentAccountPicture: CircleAvatar(
                     child: ClipOval(
-                      child: value.image,
-                      ),
+                      child: Image.network(value.imageUrl),
                     ),
-                  
+                  ),
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(
-                        'https://store-images.s-microsoft.com/image/apps.30323.14537704372270848.6ecb6038-5426-409a-8660-158d1eb64fb0.08703491-f5dc-4b00-bca6-486b7b293c17?q=90&w=480&h=270',
-                      ),
+                      image: AssetImage('images/blackImage.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.create,
-                    color: AppColor.mainColor,
-                  ),
-                  title: const Text(
-                    'Create Quiz',
-                    style: TextStyle(
-                      fontFamily: 'Rubik',
-                      color: AppColor.thirdColor,
-                    ),
-                  ),
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const CreateQuiz())),
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.my_library_books,
-                    color: AppColor.mainColor,
-                  ),
-                  title: const Text(
-                    'My Quizzes',
-                    style: TextStyle(
-                      fontFamily: 'Rubik',
-                      color: AppColor.thirdColor,
-                    ),
-                  ),
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const MyQuizzes())), // To Favorite Page
                 ),
                 ListTile(
                   leading: const Icon(
@@ -99,11 +66,48 @@ class _NavBarState extends State<NavBar> {
                       color: AppColor.thirdColor,
                     ),
                   ),
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const SearchPage())),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SearchPage())),
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.my_library_books,
+                    color: AppColor.mainColor,
+                  ),
+                  title: const Text(
+                    'My Quizzes',
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      color: AppColor.thirdColor,
+                    ),
+                  ),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const MyQuizzes())), // To Favorite Page
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.create,
+                    color: AppColor.mainColor,
+                  ),
+                  title: const Text(
+                    'Create Quiz',
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      color: AppColor.thirdColor,
+                    ),
+                  ),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CreateQuiz())),
                 ),
                 const Divider(),
-                ListTile(
+                /*ListTile(                       login button - not needed
                   leading: const Icon(
                     Icons.login,
                     color: AppColor.mainColor,
@@ -117,6 +121,27 @@ class _NavBarState extends State<NavBar> {
                   ),
                   onTap: () => Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const Login())),
+                ),
+                */
+                ListTile(
+                  leading: const Icon(
+                    Icons.logout,
+                    color: AppColor.mainColor,
+                  ),
+                  title: const Text(
+                    'Logout',
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      color: AppColor.thirdColor,
+                    ),
+                  ),
+                  onTap: () async {
+                    await value.logout(); // Call the logout function
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Login()),
+                    );
+                  },
                 ),
               ],
             )));

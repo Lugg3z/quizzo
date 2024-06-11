@@ -4,17 +4,16 @@ import 'package:quizzo/firebase_stuff/get_quizzes.dart';
 import 'package:quizzo/widgets/appbar.dart';
 import 'package:quizzo/widgets/navbar.dart';
 
-
-
 class MyQuizzes extends StatefulWidget {
   const MyQuizzes({super.key});
+
   @override
   State<MyQuizzes> createState() => _MyQuizzesState();
 }
 
 class _MyQuizzesState extends State<MyQuizzes> {
-  late List<StatelessWidget> quizNames;
-  
+  List<StatefulWidget>? quizNames;
+
   @override
   void initState() {
     super.initState();
@@ -22,7 +21,7 @@ class _MyQuizzesState extends State<MyQuizzes> {
   }
 
   Future<void> fetchQuizNames() async {
-    List<StatelessWidget> names = await getInstancesByAuthor();
+    List<StatefulWidget> names = await getInstancesByAuthor();
     setState(() {
       quizNames = names;
     });
@@ -31,16 +30,30 @@ class _MyQuizzesState extends State<MyQuizzes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: const NavBar(),
-        appBar: CustomAppBar(),
-        resizeToAvoidBottomInset: false,
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: quizNames,
-            )
-          )
-        )
+      drawer: const NavBar(),
+      appBar: CustomAppBar(),
+      resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 15,
+              ),
+              quizNames == null
+                  ? const CircularProgressIndicator()
+                  : ListView.builder(
+                shrinkWrap:
+                    true,
+                itemCount: quizNames!.length,
+                itemBuilder: (context, index) {
+                  return ListTile(title: quizNames![index]);
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

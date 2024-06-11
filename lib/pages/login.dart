@@ -36,8 +36,8 @@ class _LoginState extends State<Login> {
     });
     if (response != "ok") {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(response),
+        const SnackBar(
+          content: Text("This combination of email and password could not be found!"),
         ),
       );
     } else {
@@ -130,7 +130,6 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              // ),
               bottomNavigationBar: BottomAppBar(
                 color: AppColor.secondaryColor,
                 elevation: 0,

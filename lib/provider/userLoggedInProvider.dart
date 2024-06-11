@@ -1,41 +1,72 @@
-import 'dart:html';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class UserCredentialChanged extends ChangeNotifier{
-  static late String _name;
-  static late String _email;
-  static late Image _image;
-  static late bool _loggedIn;
+class UserCredentialChanged extends ChangeNotifier {
+  late String _name;
+  late String _email;
+  late String _imageUrl;
+  late bool _loggedIn;
+
+  UserCredentialChanged() {
+    init();
+    userDataChanged(); // Ensure we attempt to fetch user data on initialization
+  }
 
   String get name => _name;
   String get email => _email;
-  Image get image => _image;
+  String get imageUrl => _imageUrl;
   bool get loggedIn => _loggedIn;
 
-  void userDataChanged() async {
+  Future<void> userDataChanged() async {
     final User? user = FirebaseAuth.instance.currentUser;
-    final FirebaseFirestore firestore = FirebaseFirestore.instance;
-    if(user == null){
+    if (user == null) {
+      _loggedIn = false;
+      _name = "not logged in";
+      _email = "-";
+      _imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjJfzIM7lgs_uPoVT6qqextiU2E7hHBqmUAMciGe_Iig&s";
+      notifyListeners();
       return;
     }
+
     final uid = user.uid;
+    final firestore = FirebaseFirestore.instance;
     DocumentReference userRef = firestore.collection('users').doc(uid);
-    DocumentSnapshot snap = await userRef.get();
-    _name = (snap.data() as Map<String, dynamic>)['username'];
-    _email = (snap.data() as Map<String, dynamic>)['email'];
-    _image = Image.network((snap.data() as Map<String, dynamic>)['photoURL']);
-    _loggedIn = true;
+
+    try {
+      DocumentSnapshot snap = await userRef.get();
+      if (snap.exists && snap.data() != null) {
+        final data = snap.data() as Map<String, dynamic>;
+        _name = data['username'] ?? "No name";
+        _email = data['email'] ?? "No email";
+        _imageUrl = data['photoURL'] ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjJfzIM7lgs_uPoVT6qqextiU2E7hHBqmUAMciGe_Iig&s";
+        _loggedIn = true;
+      } else {
+        _name = "No name";
+        _email = "No email";
+        _imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjJfzIM7lgs_uPoVT6qqextiU2E7hHBqmUAMciGe_Iig&s";
+        _loggedIn = false;
+      }
+    } catch (e) {
+      _name = "Error";
+      _email = "Error";
+      _imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjJfzIM7lgs_uPoVT6qqextiU2E7hHBqmUAMciGe_Iig&s";
+      _loggedIn = false;
+    }
+
     notifyListeners();
   }
 
-  void init(){
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+    init();
+    notifyListeners();
+  }
+
+  void init() {
     _name = "not logged in";
-    _email="-";
-    _image= Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjJfzIM7lgs_uPoVT6qqextiU2E7hHBqmUAMciGe_Iig&s");
-    _loggedIn=false;
+    _email = "-";
+    _imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjJfzIM7lgs_uPoVT6qqextiU2E7hHBqmUAMciGe_Iig&s";
+    _loggedIn = false;
   }
 }

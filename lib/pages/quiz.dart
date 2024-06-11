@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:quizzo/constants/colors.dart';
 import 'package:quizzo/firebase_stuff/get_quizzes.dart';
 import 'package:quizzo/widgets/appbar.dart';
 import 'package:quizzo/widgets/navbar.dart';
@@ -35,6 +37,12 @@ class _QuizState extends State<Quiz> {
     });
   }
 
+  void iteratorAdd(int toAdd) {
+    if (iterator + toAdd >= 0 && iterator + toAdd < quiz.length) {
+      iterator += toAdd;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,45 +50,84 @@ class _QuizState extends State<Quiz> {
       appBar: CustomAppBar(),
       resizeToAvoidBottomInset: false,
       body: Center(
-        child: isQuizLoaded ? Column(
-          children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: 500.0,
-                maxHeight: 200,
-              ),
-              child: quiz[iterator]
-            ),
-            const SizedBox(height: 30),
-            Row(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Iterator: $iterator',
-                      style: TextStyle(fontSize: 24),
-                    ),
-                    SizedBox(height: 20),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        setState(() {
-                          iterator++;
-                        });
-                      },
-                      icon: Icon(Icons.arrow_left),
-                      label: Text('Increment'),
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.black,
-                        backgroundColor: Colors.blue, // Text color
+        child: isQuizLoaded
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  quiz[iterator],
+                  const SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 45,
+                        height: 45,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black,
+                                spreadRadius: 1,
+                                blurRadius: 1,
+                                blurStyle: BlurStyle.outer,
+                              )
+                            ]),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(4),
+                          color: AppColor.mainColor,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(4),
+                            onTap: () {
+                              setState(() {
+                                iteratorAdd(-1);
+                              });
+                            },
+                            child: const Icon(
+                              Icons.keyboard_arrow_left_outlined,
+                              color: Colors.black,
+                              size: 30,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
-                )
-              ],
-            )
-          ],
-        ) : CircularProgressIndicator(),
+                      const SizedBox(width: 30),
+                      Container(
+                        width: 45,
+                        height: 45,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black,
+                                spreadRadius: 1,
+                                blurRadius: 1,
+                                blurStyle: BlurStyle.outer,
+                              )
+                            ]),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(4),
+                          color: AppColor.mainColor,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(4),
+                            onTap: () {
+                              setState(() {
+                                iteratorAdd(1);
+                              });
+                            },
+                            child: const Icon(
+                              Icons.keyboard_arrow_right_outlined,
+                              color: Colors.black,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            : const CircularProgressIndicator(),
       ),
     );
   }

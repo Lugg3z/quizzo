@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quizzo/constants/colors.dart';
 import 'package:quizzo/firebase_stuff/get_quizzes.dart';
+import 'package:quizzo/widgets/appbar.dart';
 import 'package:quizzo/widgets/inputfield.dart';
+import 'package:quizzo/widgets/navbar.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -20,18 +22,38 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const NavBar(),
+      appBar: CustomAppBar(),
       body: Column(
         children: [
-          TextInput(
-            controller: _controller,
-            hintText: "Search",
-            inputType: TextInputType.text,
-            fillColor: AppColor.secondaryColor,
-            onChanged: (text) {
-              setState(() {
-                _searchText = text;
-              });
-            },
+          Container(
+            color: AppColor.secondaryColor,
+            child: Column(children: [
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                constraints: const BoxConstraints(maxWidth: 600),
+                width: MediaQuery.of(context).size.width - 50,
+                height: 45,
+                child: TextInput(
+                  controller: _controller,
+                  hintText: "Search",
+                  inputType: TextInputType.text,
+                  fillColor: AppColor.secondaryColor,
+                  onChanged: (text) {
+                    setState(() {
+                      _searchText = text;
+                    });
+                  },
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Divider(),
+            ]),
+          ),
+          const SizedBox(
+            height: 15,
           ),
           Flexible(
             child: StreamBuilder<QuerySnapshot>(
@@ -48,8 +70,9 @@ class _SearchPageState extends State<SearchPage> {
                   itemCount: quizzes.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                        title: QuizNames(quizzes[index]["name"],
-                            quizzes[index]["author"], quizzes[index]["uid"]));
+                      title: QuizNames(quizzes[index]["name"],
+                          quizzes[index]["author"], quizzes[index]["uid"]),
+                    );
                   },
                 );
               },

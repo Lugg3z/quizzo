@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quizzo/constants/colors.dart';
@@ -11,24 +12,26 @@ class createCard extends StatelessWidget {
     return Column(
       
       children: [
-        ConstrainedBox(
+        Container(
           constraints: const BoxConstraints(
             maxWidth: 430.0,
           ),
+          width: MediaQuery.of(context).size.width - 50,
           child: TextInput(
-            fillColor: AppColor.darkerMain,
+            fillColor: AppColor.mainColor,
             hintText: "Term",
             inputType: TextInputType.emailAddress,
             controller: _term,
           ),
         ),
-        const SizedBox(height: 15),
-        ConstrainedBox(
+        const SizedBox(height: 10),
+        Container(
           constraints: const BoxConstraints(
             maxWidth: 430.0,
           ),
+          width: MediaQuery.of(context).size.width - 50,
           child: TextInput(
-            fillColor: AppColor.darkerMain,
+            fillColor: AppColor.mainColor,
             hintText: "Definition",
             inputType: TextInputType.emailAddress,
             controller: _definition,

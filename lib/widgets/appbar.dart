@@ -20,7 +20,7 @@ class _CustomAppBarState extends State<CustomAppBar>{
         style: TextStyle(
           color: AppColor.thirdColor, 
           fontSize: 25,
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w600,
           fontFamily: "Rubik"
         ),
       ),

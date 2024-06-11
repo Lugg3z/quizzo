@@ -43,17 +43,20 @@ class _RegisterScreenState extends State<Register> {
     if (file != null) {
       return await file.readAsBytes();
     }
+    return null;
   }
 
   void chooseImageFromGallery() async {
-    Uint8List img = await selectImage(ImageSource.gallery);
-    setState(() {
-      _image = img;
-    });
+    Uint8List? img = await selectImage(ImageSource.gallery);
+    if (img != null) {
+      setState(() {
+        _image = img;
+      });
+    }
   }
 
   void register() async {
-    String response;
+    String response = "Error";
     if (_image != null) {
       setState(() {
         loading = true;
@@ -63,8 +66,6 @@ class _RegisterScreenState extends State<Register> {
           password: _passwordController.text,
           username: _usernameController.text,
           file: _image!);
-    } else {
-      response = "Choose a picture!";
     }
 
     setState(() {
@@ -76,6 +77,10 @@ class _RegisterScreenState extends State<Register> {
         context,
         MaterialPageRoute(builder: (context) => const Login()),
       );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(response),
+      ));
     }
   }
 
@@ -264,6 +269,7 @@ class AuthMethods {
 
       return "success";
     } catch (e) {
+      print(e);
       return e.toString();
     }
   }
