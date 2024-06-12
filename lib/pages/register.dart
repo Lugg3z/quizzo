@@ -264,7 +264,7 @@ class AuthMethods {
         'uid': userID,
         'email': email,
         'photoURL': url,
-        'password': password
+        'password': password //Bei richtigem Projekt entfernen
       });
 
       return "success";
